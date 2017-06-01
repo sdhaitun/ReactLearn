@@ -1,0 +1,104 @@
+var data = ['文艺', '人文社科', '经管', '励志', '科技', '生活' ];
+var c = [];
+var m = [];
+var n = [];
+var a = ["星星上的人", "心无挂碍", "解忧杂货店", "小王子", "次第花开", "老人与海", "影响力", "金字塔原理", "阿米巴经营", "断舍离", "非暴力沟通", "人性的弱点营", "时间重生", "虚空：宇宙源起何处", "无限之书：从宇宙边", "太空之眼 : 哈勃", "肌肉健美训练图解", "如果可以去流浪", "孤独星球", "最好的时光在路上"];
+ n.push({
+        'name':'人文社科'
+    });
+for (var k = 0; k < a.length; k++) {
+    
+        c.push({
+            "name": a[k],
+            "value": 300,
+            "symbolSize": 18,
+            "category": "人文社科",
+            "draggable": "true"
+        });
+        m.push({
+            "source": "借阅频次高的书类进行排名",
+            "target": a[k]
+        })
+}
+c.push({
+    "name": "借阅频次高的书类进行排名",
+    "symbolSize": 30,
+    "category": "借阅频次高的书类进行排名",
+    "draggable": "true",
+    "value": []
+});
+console.log(c)
+/*   d.push( {
+       "source": "人文学院",
+       "target": "汉语言文学(应用语言学)"
+   });*/
+option = {
+    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        offset: 0,
+        color: '#f7f8fa'
+    }, {
+        offset: 1,
+        color: '#cdd0d5'
+    }]),
+    title: {
+        text: "书类排名",
+    },
+    tooltip: {},
+    legend: [{
+        formatter: function(name) {
+            return echarts.format.truncateText(name, 40, '14px Microsoft Yahei', '…');
+        },
+        tooltip: {
+            show: true
+        },
+        selectedMode: 'false',
+        bottom: 20,
+        data: ['人文社科']
+    }],
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {
+                show: true,
+                readOnly: true
+            },
+            restore: {
+                show: true
+            },
+            saveAsImage: {
+                show: true
+            }
+        }
+    },
+    animationDuration: 3000,
+    animationEasingUpdate: 'quinticInOut',
+    series: [{
+        name: '借阅频次高的书类进行排名',
+        type: 'graph',
+        layout: 'force',
+
+        force: {
+            repulsion: 50
+        },
+        data: c,
+        links: m,
+        categories: n,
+        focusNodeAdjacency: true,
+        roam: true,
+        label: {
+            normal: {
+
+                show: true,
+                position: 'top',
+
+            }
+        },
+        lineStyle: {
+            normal: {
+                color: 'source',
+                curveness: 0,
+                type: "solid"
+            }
+        }
+    }]
+};
